@@ -18,7 +18,6 @@
   });
 
   async function login(){
-    console.log("Action");
     const url = `${API_URL}/api/usuario/login`;
     axios.post(url,{codigo:codigo,password:password},{
       validateStatus: function(status){

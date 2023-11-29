@@ -105,6 +105,44 @@
 </main>
 
 <style>
+dialog{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 100px;
+    border-radius: 20px;
+  }
+
+  .dialog-content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dialog-message{
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .dialog-btn{
+    cursor: pointer;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+    background-color: var(--separator-color);
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: width 0.3s;
+  }
+
+  .dialog-btn:hover{
+    width: 155px;
+    transition: width 0.3s;
+  }
   dialog{
     flex-direction: column;
     align-items: center;

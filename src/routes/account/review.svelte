@@ -3,6 +3,15 @@
      * @type {any}
      */
     export let info;
+     
+    /**
+     * @type {(arg0: any) => void}
+     */
+     export let callback;
+
+    function deleteReport(){
+        callback(info.id);
+    }
 </script>
 
 <div class="comment">
@@ -30,7 +39,7 @@
         </div>
         {/if}
         
-        <button class="btn-report">Eliminar</button>
+        <button class="btn-report" on:click={deleteReport}>Eliminar</button>
     </div>
     <div class="comment-body">
         <p> {info.comentario}</p>
@@ -40,6 +49,7 @@
 <style>
     .comment{
         margin: 10px 0;
+        width: 95%;
         border-radius: 4px 5px;
         padding: 0px 10px;
         border: 3px solid #4b455a;

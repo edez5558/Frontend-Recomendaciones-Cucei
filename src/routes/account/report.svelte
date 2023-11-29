@@ -2,35 +2,29 @@
     import axios from "axios";
     import { API_URL } from "../config";
 
+
     /**
      * @type {any}
      */
     export let info;
-    /**
-     * @type {() => void}
-     */
-     export let clickFunction;
-
-    console.log(info);
-
-    /**
-     * @param {any} id
-     */
-    async function report_id(id){
-        const url = `${API_URL}/api/review/report`;
-
-        axios.post(url,{id : id}).then(response => {
-             
-        }).catch(err=>{
-            console.log(err);
-        });
-    }
     
-    function report(){
-        report_id(info.id);
-        clickFunction();
+    /**
+     * @type {(arg0: string) => void}
+     */
+    export let callback;
+
+    /**
+     * @type {(arg0: string) => void}
+     */
+    export let callbackDelete;
+
+    function cancel(){
+        callback(info.id);
     }
 
+    function deleteReport(){
+        callbackDelete(info.id);
+    }
 </script>
 
 <div class="comment">
@@ -45,6 +39,12 @@
         </div>
         {/if}
 
+        <div class="extra-vote">
+            <div class="vote">
+                <p class="vote-label">{info.docente}</p>
+            </div>
+        </div>
+
         {#if info.materia != undefined}
         <div class="extra-vote">
             <div class="vote">
@@ -53,7 +53,8 @@
         </div>
         {/if}
         
-        <button class="btn-report" on:click={report}>Reportar</button>
+        <button class="btn-cancel" on:click={cancel}>Cancelar</button>
+        <button class="btn-report" on:click={deleteReport}>Eliminar</button>
     </div>
     <div class="comment-body">
         <p> {info.comentario}</p>
@@ -63,6 +64,7 @@
 <style>
     .comment{
         margin: 10px 0;
+        width: 95%;
         border-radius: 4px 5px;
         padding: 0px 10px;
         border: 3px solid #4b455a;
@@ -114,7 +116,7 @@
         justify-content: space-between;
     }
 
-    .btn-report{
+    .btn-report, .btn-cancel{
         background-color: #e9e59c;
         margin-top: 10px;
         font-weight: bold;
